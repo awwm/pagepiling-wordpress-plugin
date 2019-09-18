@@ -147,4 +147,59 @@ class Awwm_Slider_Admin {
 	register_post_type( strtolower( $cpt_name ), $opts );
 	} // awwm_slide_cpt()
 
+	// =============Add Meta Box ========
+
+	function cf_sliders_meta_box() {
+		add_meta_box( 
+			'cf-slider-meta-box', 
+			'Popup Content', 
+			array($this, 'cf_slider_details'), 
+			'awwm-slider', 
+			'normal', 
+			'high' 
+		);
+	}
+
+	// Function to display what is inside of our meta box
+	function cf_slider_details( $post ) {
+		// Retrieve saved metadata if it exists
+		$cf_slider_age = get_post_meta( $post->ID, '_cf_slider_age', true );
+		// Create a nonce field for verifisliderion
+    		wp_nonce_field( 'cf_submit_slider', 'cf_slider_check' );
+    		// The form inside our meta box
+		echo '<table class="form-table">
+			<tr valign="top">
+				<td>
+					'.wp_editor( htmlspecialchars_decode($cf_slider_age), 'cf_slider_age', array("media_buttons" => true) ).'
+				</td>
+			</tr>
+		</table>';
+	}
+
+	// Update/Save slider metadata
+
+	function save_slider_metadata( $post_id ) {
+		// Verify if this is an auto save routine.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		//Check permissions
+		if ( !current_user_can( 'publish_posts' ) ) { // Check for capabilities, not role
+			wp_die( 'Insufficient Privileges: Sorry, you do not have the capabilities access to this page. Please go back.' );
+		}
+		// Check nonce named cf_slider_check
+		// Verify this came from the our screen and with proper authorization
+		if ( !isset( $_POST['cf_slider_check'] )  || !wp_verify_nonce(  $_POST['cf_slider_check'], 'cf_submit_slider' ) ) {
+			return;
+		}
+		// OK, we're authentislidered: we need to save the data
+		// Verify the meta data is set
+		if ( isset( $_POST['cf_slider_age'] ) ) {
+			// Save meta data
+			 $data=htmlspecialchars($_POST['cf_slider_age']);
+			update_post_meta( $post_id, '_cf_slider_age', $data );
+		}
+	}
+
+
 }

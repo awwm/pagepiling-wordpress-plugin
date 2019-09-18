@@ -29,13 +29,13 @@
 		<div class="inside">
 			<b><?php echo $item->post_title; ?></b>
 			<?php if($x==1) { ?>
-				<?php echo wp_trim_words( $item->post_content, 15 ); ?>
-			<?php } elseif($item==end($items)) { ?>
+				<?php echo $item->post_content; ?>
+			<?php  } elseif($item==end($items)) { ?>
 				<div>
 				<?php echo do_shortcode('[contact-form-7 id="19" title="Contact form 1"]'); ?>
 				</div>
-			<?php } else { ?>
-				<?php echo wp_trim_words( $item->post_content, 50 ); ?>
+			<?php  } else { ?>
+				<?php echo $item->post_content; ?>
 				<div class="readMore click-to-open" data-modal="<?php echo $dataModal; ?>">
 					<input type="button" value="Read More" />
 				</div>
@@ -53,7 +53,10 @@
      
       				<div class="modal-body">
         				<div class="modal-content">
-          					<p><?php echo $item->post_content; ?></p>
+						<?php
+        						$popup_content = get_post_meta($item->ID, '_cf_slider_age', true);
+        						echo $popup_content;
+    						?>
         				</div>
       				</div>
     			</div>

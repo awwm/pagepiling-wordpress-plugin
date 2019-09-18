@@ -81,6 +81,7 @@
 
 	 });
 	$('.nextBtn').click(function() {
+			$('.nxtPrevBtn').fadeOut('fast');
 			var movingCar = $(".carImage img");
      			window.setTimeout(function() { 
 	                 	$('.scroll').removeClass('pause');
@@ -99,13 +100,17 @@
      			window.setTimeout(function() { 
 	                 	movingCar.animate({left: 0, opacity: 1 }, 1000, "linear");
 			}, 100);
-			
+			window.setTimeout(function() {
+			$('.nxtPrevBtn').fadeIn('slow');
+  			}, 3000);
 
 	});
 
 
 	$('.prevBtn').click(function() {
+		$('.nxtPrevBtn').fadeOut('fast');
     		$.fn.pagepiling.moveSectionUp();
+		$('.nxtPrevBtn').fadeIn('slow');
 	});
 
 	var btn = document.getElementsByClassName("click-to-open"); 
