@@ -1,0 +1,397 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+html{scroll-behavior:smooth}
+.scroll {
+    position: fixed;
+    bottom: 5%;
+    left: 0;
+    height: 50%;
+    background-size: cover;
+    /*background-position: 100% 0;*/
+    background-repeat: repeat-x;
+  /*z-index: 5;*/
+}
+.run-animation {
+	animation: animate 15s linear infinite;
+}
+.pause {
+    animation-play-state:paused;
+    -webkit-animation-play-state:paused;
+}
+@keyframes animate{
+from{
+background-position: 0 0;
+}
+to{
+background-position: 100% 0;
+}
+}
+.horizon
+{
+  width: 100%;
+  z-index: -2;
+}
+
+.middle
+{
+  width: 100%;
+  z-index: -1;
+}
+
+.front
+{
+  z-index: 500;
+  width: 8000px;
+  top: 0px; 
+}
+.page-1.pageSlide.active {
+    background: RGB(39,188,193);
+}
+.pageSlide {
+    top: 0px;
+    position: relative;
+    float: left;
+    font-family: 'Open Sans', sans-serif;
+    color: RGB(39,188,193);
+    text-align: justify;
+    background: #fff;
+}
+.pageSlide.active {
+
+}
+
+.page-1.pageSlide .inside {
+    background: transparent;
+    border: 0px;
+    color: #fff;
+    width: 60%;
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 auto 10%;
+}
+.pageSlide .inside {
+    width: 50%;
+    background: rgba(255,255,255,0.3);
+    padding: 10px 30px 30px; 
+    border: 0px #eee solid;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 auto;
+}
+.readMore{
+    text-align: right;
+}
+.readMore input[type="button"] {
+    padding: 5px 20px 8px;
+    line-height: 24px;
+    font-size: 18px;
+    background: RGB(39,188,193);
+    border: 1px solid RGB(39,188,193); 
+}
+.readMore input[type="button"]:hover {
+    color: RGB(39,188,193);
+    background: RGB(255,255,255);
+    border: 1px solid RGB(39,188,193);
+}
+
+.slideBottom {
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    padding: 19px 25px;
+    z-index: 6;
+}
+.carWhite,
+.carRed {
+    display: none;
+}
+.page-1.active ~ .scroll,
+.page-1.active ~ .nxtPrevBtn>.prevBtn {
+	opacity: 0; 
+}
+.carImage {
+    float: left;
+}
+.carWhite {
+    width: 30%;
+}
+.carRed {
+    width: 27%;
+}
+
+.nxtPrevBtn {
+    position: fixed;
+    bottom: 10%;
+    right: 15px;
+    z-index: 6;
+    display: flex;
+}
+.spot {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.svg-wrapper {
+  margin-top: 0;
+  position: relative;
+  width: 150px;
+  height: 43px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-left: 5px;
+  margin-right: 5px
+}
+#shape {
+  stroke-width: 6px;
+  fill: transparent;
+  /*stroke: #ed1b24;*/
+  stroke-dasharray: 85 400;
+  stroke-dashoffset: -220;
+  transition: 1s all ease;
+}
+#text {
+  color: #ed1b24;
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 1.1em;
+    margin-top: -55px;
+    text-align: center;
+    background: #fff;
+
+}
+.page-1 #text {
+  color: RGB(39,188,193);
+}
+.svg-wrapper:hover #shape {
+  stroke-dasharray: 50 0;
+  stroke-width: 3px;
+  stroke-dashoffset: 0;
+  stroke: #ed1b24;
+} 
+.page-1 .svg-wrapper:hover #shape {
+  /*stroke: RGB(39,188,193);*/
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.col-half {
+    width: 50%;
+    font-size: 0.75em;
+    float: left;
+    padding: 1%;
+}
+.col-full {
+    width: 100%;
+    font-size: 0.75em;
+    float: left;
+    padding: 1%;
+}
+form input[type="submit"] {
+    width: 100%;
+    background: RGB(39,188,193);
+    font-size: 24px;
+    line-height: 0.7;
+padding: 0.76rem 1rem;
+    border: 1px solid RGB(39,188,193);
+
+}
+form input[type="submit"]:hover {
+    width: 100%;
+    color: RGB(39,188,193);
+    background: RGB(255,255,255);
+    border: 1px solid RGB(39,188,193);
+    font-size: 24px;
+    line-height: 0.7;
+padding: 0.76rem 1rem;
+}
+
+input[type="text"], input[type="email"], textarea {
+    padding: 0.1rem 0.66rem;
+    width: 100%;
+}
+div.wpcf7-validation-errors, 
+div.wpcf7-acceptance-missing {
+    margin: 0em 0.5em 0em;
+    padding: 0em;
+    border: 0px solid #ff0000;
+    color: #ff0000;
+}
+div.wpcf7-mail-sent-ok {
+    border: 0px solid #398f14;
+    margin: 0em 0.5em 0em;
+    padding: 0em;
+    color: #398f14;
+}
+/* Modal Content */
+.modal-wrapper {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+/* The Close Button */
+.modal-close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+}
+.modal-close:hover,
+.modal-close:focus { 
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 50px;
+    background-color: RGB(39,188,193);
+    color: white;
+}
+.modal-body {padding: 15px 50px;}
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+
+#main .entry .entry-content > *, 
+#main .entry .entry-summary > * {
+    margin: 0 ;
+}
+
+#main .entry .entry-content, 
+#main .entry .entry-summary {
+    margin: 0 ;
+    padding: 0 ;
+}
+@media (max-width: 1024px) and (min-width:768px) {
+.pageSlide .inside {
+    width: 75%;
+}
+.page-1.pageSlide .inside {
+    width: 80%;
+}
+.modal-wrapper {
+    width: 85%;
+}
+}
+@media (max-width: 767px) {
+.page-1.pageSlide .inside {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 600;
+}
+.pageSlide .inside {
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: 400;
+    width: 100%;
+    text-align: left;
+}
+.col-half {
+    width: 100%;
+    float: none;
+}
+form input[type="submit"] {
+    width: 100% !important;
+    font-size: 18px !important;
+    line-height: 0.3 !important;
+}
+.nxtPrevBtn {
+    bottom: 15px;
+    right: 25px;
+}
+.modal,
+.modal-wrapper {
+    width: 100%;
+}
+.modal {
+    padding-top: 25px; 
+}
+.modal-header {
+    padding: 2px 15px;
+}
+.modal-header h3.modal-heading {
+    font-size: 1em;
+}
+.modal-body {
+    padding: 0px 15px;
+}
+.modal-body p {
+    font-size: 16px;
+}
+.scroll {
+    bottom:10%;
+height: 50%;
+}
+.horizon,
+.middle {
+    width: 100%;
+}
+.slideBottom {
+    bottom: 25px;
+}
+.carRed {
+    width: 20%;
+    margin-bottom: -25px;
+}
+.carWhite {
+    width: 40%;
+    margin-bottom: -50px;
+}
+}
+@media (max-width: 420px) {
+.pageSlide {
+    top: -75px;
+}
+.page-1.pageSlide {
+    top: 0px;
+}
+.modal {
+    top: 15%;
+}
+.carRed {
+    width: 50%;
+    margin-bottom: 0px;
+}
+.carWhite {
+    width: 50%;
+    margin-bottom: -50px;
+}
+}
