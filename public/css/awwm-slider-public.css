@@ -3,6 +3,7 @@
  * included in this file.
  */
 html{scroll-behavior:smooth}
+
 .scroll {
     position: fixed;
     bottom: 5%;
@@ -15,6 +16,9 @@ html{scroll-behavior:smooth}
 }
 .run-animation {
 	animation: animate 15s linear infinite;
+}
+.run-animation2 {
+	animation: animate 25s linear infinite;
 }
 .pause {
     animation-play-state:paused;
@@ -32,6 +36,14 @@ background-position: 100% 0;
 {
   width: 100%;
   z-index: -2;
+  margin-bottom: 0px;
+}
+
+.horizon2
+{
+  width: 100%;
+  z-index: -2;
+  margin-bottom: 150px;
 }
 
 .middle
@@ -73,24 +85,36 @@ background-position: 100% 0;
 }
 .pageSlide .inside {
     width: 50%;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.75);
     padding: 10px 30px 30px; 
     border: 0px #eee solid;
+	border-radius: 24px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     margin: 0 auto;
+	margin-bottom: 20%;
 }
 .readMore{
+	font-family: 'Open Sans', sans-serif;
     text-align: right;
+	margin-left: 10px;
 }
 .readMore input[type="button"] {
     padding: 5px 20px 8px;
     line-height: 24px;
-    font-size: 18px;
+    font-size: 21px;
     background: RGB(39,188,193);
     border: 1px solid RGB(39,188,193); 
 }
-.readMore input[type="button"]:hover {
+.pEvent {
+  pointer-events:none;
+}
+.readMore:hover input[type="button"] {
+    color: RGB(39,188,193);
+    background: RGB(255,255,255);
+    border: 1px solid RGB(39,188,193);
+}
+.page-1 .nxtPrevBtn:hover .readMore input[type="button"] {
     color: RGB(39,188,193);
     background: RGB(255,255,255);
     border: 1px solid RGB(39,188,193);
@@ -101,8 +125,13 @@ background-position: 100% 0;
     bottom: 0;
     position: fixed;
     padding: 19px 25px;
-    z-index: 6;
+    z-index: 99;
+    pointer-events: none;
 }
+.clickCar {
+    pointer-events: none;
+}
+
 .carWhite,
 .carRed {
     display: none;
@@ -115,7 +144,7 @@ background-position: 100% 0;
     float: left;
 }
 .carWhite {
-    width: 30%;
+    width: 50%;
 }
 .carRed {
     width: 27%;
@@ -125,7 +154,7 @@ background-position: 100% 0;
     position: fixed;
     bottom: 10%;
     right: 15px;
-    z-index: 6;
+    z-index: 99;
     display: flex;
 }
 .spot {
@@ -189,6 +218,18 @@ background-position: 100% 0;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+.modalWithImages {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.modalWithImages img {
+    height: auto;
+    max-width: 30%;
+    position: relative;
+}
 .col-half {
     width: 50%;
     font-size: 0.75em;
@@ -249,7 +290,8 @@ div.wpcf7-mail-sent-ok {
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+	border-radius: 24px;
 }
 /* Add Animation */
 @-webkit-keyframes animatetop {
@@ -281,8 +323,15 @@ div.wpcf7-mail-sent-ok {
     padding: 2px 50px;
     background-color: RGB(39,188,193);
     color: white;
+	border-top-left-radius: 24px;
+	border-top-right-radius: 24px;
 }
-.modal-body {padding: 15px 50px;}
+.modal-body
+{
+	padding: 15px 50px;
+	border-bottom-left-radius: 24px;
+	border-bottom-right-radius: 24px;
+}
 .modal-footer {
     padding: 2px 16px;
     background-color: #5cb85c;
@@ -300,6 +349,37 @@ div.wpcf7-mail-sent-ok {
     margin: 0 ;
     padding: 0 ;
 }
+#accordion h3 {
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    color: #27bcc1;
+}
+#accordion h3.ui-accordion-header-active {
+    color: #fff;
+} 
+#accordion .ui-state-active, 
+#accordion .ui-widget-content .ui-state-active, 
+#accordion .ui-widget-header .ui-state-active, 
+#accordion a.ui-button:active, 
+#accordion .ui-button:active, 
+#accordion .ui-button.ui-state-active:hover {
+    border: 1px solid RGB(39,188,193);
+    background: RGB(39,188,193) !important;
+}
+#accordion .ui-state-default {
+    background: #edfeff;
+    border: 1px solid RGB(39,188,193);
+}
+#accordion .ui-widget-content p {
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif; 
+    color: #27bcc1;
+}
+
+#accordion.ui-accordion .ui-accordion-content {
+    padding: 0em 1.2em;
+}
+
 @media (max-width: 1024px) and (min-width:821px) {
 .pageSlide .inside {
     width: 75%;
@@ -399,9 +479,9 @@ form div.wpcf7-response-output {
 }
 .pageSlide .inside {
     padding: 10px 15px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    width: 100%;
+    width: 90%;
     text-align: left;
 }
 .col-half {
@@ -422,7 +502,13 @@ form input[type="submit"] {
     width: 100%;
 }
 .modal {
-    padding-top: 25px; 
+    padding-top: 0px; 
+}
+h4.modal-heading {
+    margin: 5px 0;
+}
+.modal-close {
+    font-size: 20px;
 }
 .modal-header {
     padding: 2px 15px;
@@ -433,7 +519,7 @@ form input[type="submit"] {
 .modal-body {
     padding: 0px 15px;
 }
-.modal-body p {
+.modal-body .modal-content {
     font-size: 16px;
 }
 .scroll {
@@ -444,11 +530,11 @@ height: 50%;
 .middle {
     width: 100%;
 }
-.slideBottom {
-    bottom: 25px;
+#car_and_exhaust {
+    width: 50% !important;
+    margin-bottom: 0;
 }
 .carRed {
-    width: 20%;
     margin-bottom: -25px;
 }
 .carWhite {
@@ -485,6 +571,13 @@ form div.wpcf7-response-output {
     text-align: right;
     padding: 0.2em 0em;
 }
+.slideBottom {
+    bottom: 0px;
+}
+#exhaust {    
+    margin-right: -35px !important;
+    margin-top: 35px !important;
+}
 }
 @media (max-width: 420px) {
 /*.pageSlide {
@@ -493,21 +586,44 @@ form div.wpcf7-response-output {
 .page-1.pageSlide {
     top: 0px;
 }
+.page-1 .inside h3 {
+    font-size: 1.4em;
+}
 .modal {
-    top: 15%;
+    top: 0;
+    padding: 10px;
+}
+.slideBottom {
+    bottom: 25px;
+}
+#exhaust {
+    width: 25% !important;
+    margin-right: -30px !important;
+    margin-top: 65px !important;
+}
+#car_and_exhaust {
+    width: 100% !important;
 }
 .carRed {
-    width: 50%;
-    margin-bottom: 0px;
+    width: 50% !important;
+    margin-bottom: 15px;
 }
 .carWhite {
-    width: 50%;
-    margin-bottom: -50px;
+    width: 75%;
+    margin-bottom: 0;
 }
 form div.wpcf7-response-output {
     font-size: 14px;
     border: 0;
     margin: 0;
     padding: 0;
+}
+.nxtPrevBtn {
+    bottom: 10px;
+    right: 10px;
+}
+.readMore input[type="button"] {
+    font-size: 18px;
+    padding: 5px 10px 8px;
 }
 }

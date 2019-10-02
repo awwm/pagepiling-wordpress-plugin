@@ -158,12 +158,15 @@ class Awwm_Slider_Admin {
 			'normal', 
 			'high' 
 		);
+
 	}
 
 	// Function to display what is inside of our meta box
 	function cf_slider_details( $post ) {
 		// Retrieve saved metadata if it exists
 		$cf_slider_age = get_post_meta( $post->ID, '_cf_slider_age', true );
+		$cf_slider_prev = get_post_meta( $post->ID, '_cf_slider_prev', true );
+		$cf_slider_next = get_post_meta( $post->ID, '_cf_slider_next', true );
 		// Create a nonce field for verifisliderion
     		wp_nonce_field( 'cf_submit_slider', 'cf_slider_check' );
     		// The form inside our meta box
@@ -172,6 +175,16 @@ class Awwm_Slider_Admin {
 				<td>
 					'.wp_editor( htmlspecialchars_decode($cf_slider_age), 'cf_slider_age', array("media_buttons" => true) ).'
 				</td>
+			</tr>
+		</table>';
+		echo '<table class="form-table">
+			<tr valign="top">
+				<th scope="row"><label for="cf_slider_prev">Previous Button Label:</label></th>
+				<td><input type="text" name="cf_slider_prev" size="30" value="' . esc_attr( $cf_slider_prev ) . '" /></td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="cf_slider_nexty">Next Button Label:</label></th>
+				<td><input type="text" name="cf_slider_next" size="30" value="' . esc_attr( $cf_slider_next ) . '" /></td>
 			</tr>
 		</table>';
 	}
@@ -194,10 +207,14 @@ class Awwm_Slider_Admin {
 		}
 		// OK, we're authentislidered: we need to save the data
 		// Verify the meta data is set
-		if ( isset( $_POST['cf_slider_age'] ) ) {
+		if ( isset( $_POST['cf_slider_age'] ) && isset( $_POST['cf_slider_prev'] ) && isset( $_POST['cf_slider_next'] ) ) {
 			// Save meta data
 			 $data=htmlspecialchars($_POST['cf_slider_age']);
 			update_post_meta( $post_id, '_cf_slider_age', $data );
+			 $dataPrev=htmlspecialchars($_POST['cf_slider_prev']);
+			update_post_meta( $post_id, '_cf_slider_prev', $dataPrev );
+			 $dataNext=htmlspecialchars($_POST['cf_slider_next']);
+			update_post_meta( $post_id, '_cf_slider_next', $dataNext );
 		}
 	}
 

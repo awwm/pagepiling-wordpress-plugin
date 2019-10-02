@@ -23,21 +23,27 @@
 			$x++; ?>
 
 	    <div class="section page-<?php echo $x; ?> pageSlide">
+			<?php // echo count($items); ?>
 		<?php if($item!=end($items)) {
 			$dataModal = 'modal-window-'. $x ; 
 		}else{$dataModal = '' ; } ?>
 		<div class="inside">
-			<b><?php echo $item->post_title; ?></b>
+			<b><?php // echo $item->post_title; ?></b>
 			<?php if($x==1) { ?>
+				
 				<?php echo $item->post_content; ?>
 			<?php  } elseif($item==end($items)) { ?>
 				<div>
 				<?php echo do_shortcode('[contact-form-7 id="19" title="Contact form 1"]'); ?>
 				</div>
 			<?php  } else { ?>
-				<?php echo $item->post_content; ?>
+				<?php 
+					$post_content_2 = $item->post_content;
+					$post_content_2 = str_replace(chr(13), "<br>", $post_content_2);
+					echo $post_content_2;
+				?>
 				<div class="readMore click-to-open" data-modal="<?php echo $dataModal; ?>">
-					<input type="button" value="Read More" />
+					<input type="button" value="Lees verder >" />
 				</div>
 
 			<?php } ?>
@@ -47,64 +53,71 @@
     			<div class="modal-overlay modal-toggle"></div>
     			<div class="modal-wrapper modal-transition">
       				<div class="modal-header">
-        				<h3 class="modal-heading"><?php echo $item->post_title; ?></h3>
+        				<h4 class="modal-heading"><?php echo "&nbsp;"; echo $item->post_title; ?></h4>
         				<button class="modal-close modal-toggle"> X </button>
       				</div>
      
       				<div class="modal-body">
         				<div class="modal-content">
 						<?php
-        						$popup_content = get_post_meta($item->ID, '_cf_slider_age', true);
+        						$popup_content = nl2br( htmlspecialchars_decode(get_post_meta($item->ID, '_cf_slider_age', true)) );
+								//$popup_content = str_replace(chr(13), "<br>", $popup_content);
         						echo $popup_content;
     						?>
         				</div>
       				</div>
     			</div>
   		</div>
-	<?php } ?>
-	<div class="horizon scroll run-animation" style="background-image:url(<?php echo plugin_dir_url( __DIR__ ); ?>images/parallax-layer-2.png)">
-     	</div>
-    	<div class="middle scroll run-animation" style="background-image:url(<?php echo plugin_dir_url( __DIR__ ); ?>images/parallax-layer-1.png)">
-       	</div>
+		<?php } ?>
+			<div class="horizon2 scroll run-animation2" style="background-image:url(<?php echo plugin_dir_url( __DIR__ ); ?>images/parallax-layer-3.png)"></div>
+			<div class="horizon scroll run-animation" style="background-image:url(<?php echo plugin_dir_url( __DIR__ ); ?>images/parallax-layer-2.png)"></div>
+			<div class="middle scroll run-animation" style="background-image:url(<?php echo plugin_dir_url( __DIR__ ); ?>images/parallax-layer-1.png)"></div>
 
+			<div class="nxtPrevBtn">
+				<?php $prevBtnLabel = get_post_meta($item->ID, '_cf_slider_prev', true);
+				      $nextBtnLabel = get_post_meta($item->ID, '_cf_slider_next', true);
+				if(!empty($prevBtnLabel)) { ?>
+					<div class="prevBtn">
+						<div class="readMore">
+							<input type="button" id="previous_button" value="< <?php echo $prevBtnLabel; ?>">
+						</div>
+					</div>
+				<?php } 
+				if(!empty($nextBtnLabel)) { ?>
+					<div class="nextBtn" id="nextBtn">
+						<div class="readMore">
+							<input type="button" id="next_button" value="<?php echo $nextBtnLabel; ?> >">
+						</div>
+					</div>
+				<?php } ?>
+			</div>
 
-	    </div>
+		</div>
 
 	<?php } ?>
 		<div id="" class="slideBottom">
 			<div class="carImage">
 					<img class="carWhite" src="<?php echo plugin_dir_url( __DIR__ ); ?>images/car-white.gif" alt="" />
-
-					<img class="carRed" src="<?php echo plugin_dir_url( __DIR__ ); ?>images/car.gif" alt="" />
-
+					<div id="car_and_exhaust" style="width: 500px;">
+						<img id="exhaust" src="<?php echo plugin_dir_url( __DIR__ ); ?>images/car-exhaust.gif" alt="" style="display: none; opacity: 0.0; float: left; width: 40%; margin-right: -50px; margin-top: 50px;" />
+						<img class="carRed" src="<?php echo plugin_dir_url( __DIR__ ); ?>images/car.png" alt="" style="float: left; width: 50%;" />
+					</div>
 			</div>
 		</div>
 
 
-			<div class="nxtPrevBtn">
+			<!--<div class="nxtPrevBtn">
 				<div class="prevBtn">
-					<div class="svg-wrapper">
-						<svg height="43" width="150" xmlns="http://www.w3.org/2000/svg">
-							<rect id="shape" height="43" width="150" />
-        						<div id="text">
-          							<span class="spot"></span>
-								<?php echo '< Previous'; ?>
-        						</div>
-      						</svg>
-    					</div>
+					<div class="readMore">
+						<input type="button" id="previous_button" value="< Vorige">
+					</div>
 				</div>
 				<div class="nextBtn" id="nextBtn">
-					<div class="svg-wrapper">
-						<svg height="43" width="150" xmlns="http://www.w3.org/2000/svg">
-							<rect id="shape" height="43" width="150" />
-        						<div id="text">
-          							<span class="spot"></span>
-								<?php echo 'Start >'; ?>
-        						</div>
-      						</svg>
-    					</div>
+					<div class="readMore">
+						<input type="button" id="next_button" value="Start >">
+					</div>
 				</div>
-			</div>
+			</div>-->
 
 	</div>
 

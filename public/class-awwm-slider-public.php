@@ -76,6 +76,7 @@ class Awwm_Slider_Public {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/awwm-slider-public.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'page-piling', plugin_dir_url( __FILE__ ) . 'css/jquery.pagepiling.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap', false );
+		wp_enqueue_style( 'jqueryuistyle', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', false );
 	}
  
 	/**
@@ -115,8 +116,8 @@ class Awwm_Slider_Public {
 		$return = '';
 		$args = array(
 			'post_type' => 'awwm-slider',
-			'posts_per_page' => $params,
-			'orderby' => 'title',
+			//'posts_per_page' => $params,
+			'orderby' => 'date',
 			'order'   => 'ASC'
 		);
  
@@ -155,7 +156,7 @@ class Awwm_Slider_Public {
 		ob_start();
  
 			$args = shortcode_atts( array(
-				'num-quotes' => 5,
+				'num-quotes' => 6,
 				'quotes-title' => 'Words of Wisdom',),
 				$atts
 			);
